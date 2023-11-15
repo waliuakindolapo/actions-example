@@ -24,9 +24,9 @@ jobs:
       - name: Create Azure VM
         run: |
           az vm create \
-            --resource-group <your-resource-group> \
-            --name <your-vm-name> \
+            --resource-group <seeqgold> \
+            --name <seeqgold-vm> \
             --image UbuntuLTS \
-            --admin-username <your-username> \
-            --admin-password <your-password> \
+            --admin-username <seeqgold> \
+            --admin-password <asdfghjkl> \
             --size Standard_DS1_v2
