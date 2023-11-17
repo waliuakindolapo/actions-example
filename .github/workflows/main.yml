@@ -7,7 +7,13 @@ on:
 
 jobs:
   create-vm:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
+
+    env: 
+      RESOURCE_GROUP: frst-env
+      NAME: seeqgold-vm
+      ADMIN_USERNAME: seeqgold
+      ADMIN_PASSWORD: omolaja
 
     steps:
       - name: Checkout repository
@@ -22,17 +28,11 @@ jobs:
         run: az login --service-principal -u ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
       - name: Create Azure VM
-        env: 
-        RESOURCE_GROUP: frst-env
-        NAME: seeqgold-vm
-        ADMIN_USERNAME: seeqgold
-        ADMIN_PASSWORD: omolaja
-        
         run: |
           az vm create \
-            --resource-group % RESOURCE_GROUP % \
-            --name  % NAME % \
+            --resource-group $RESOURCE_GROUP \
+            --name $NAME \
             --image UbuntuLTS \
-            --admin-username % ADMIN_USERNAME % \
-            --admin-password % ADMIN_PASSWORD % \
+            --admin-username $ADMIN_USERNAME \
+            --admin-password $ADMIN_PASSWORD \
             --size Standard_DS1_v2
